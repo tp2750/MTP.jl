@@ -3,6 +3,9 @@ uuid = "952b76c5-a10f-4aa4-b3a1-9a1f1ece7e60"
 authors = ["Thomas Poulsen"]
 version = "0.1.0"
 
+[deps]
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+
 [compat]
 julia = "1.5.3"
 
