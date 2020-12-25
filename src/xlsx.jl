@@ -1,4 +1,4 @@
-export sheet_as_matrix, name,dimension, filepath
+export sheet_as_matrix, name,dimension, filepath, DataFrame
 
 function sheet_as_matrix(s::XLSX.Worksheet) 
     name = s.name
@@ -22,3 +22,10 @@ dimension(s::XLSX.Worksheet) = s.dimension
 filepath(s::XLSX.Worksheet) = s.package.filepath
 
 Base.size(s::XLSX.Worksheet) = size(dimension(s)) ## Type pirate
+
+import DataFrames.DataFrame 
+"""
+    DataFrame(s::XLSX.Worksheet)
+    Get a work-sheet as DataFrame
+"""
+DataFrames.DataFrame(s::XLSX.Worksheet) = DataFrame(XLSX.readtable(s.package.filepath, s.name)...)

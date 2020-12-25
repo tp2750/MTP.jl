@@ -50,3 +50,14 @@ dimension(wbs1)
 filepath(wbs1)
 ```
 
+## Easy DataFrames
+
+You can quickly get a worksheet as a Dataframe using the overloaded `DataFrame` function:
+
+```@example 2
+using XLSX, MTP, DataFrames
+wb2 = XLSX.readxlsx("../../test/plate_test.xlsx")
+wb2s1 = wb2[1]
+DataFrame(wb2s1)
+```
+

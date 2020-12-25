@@ -1,4 +1,4 @@
-using MTP, XLSX
+using MTP, XLSX, DataFrames
 using Documenter
 
 makedocs(;
