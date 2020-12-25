@@ -1,4 +1,4 @@
-using MTP
+using MTP, XLSX
 using Documenter
 
 makedocs(;
@@ -13,6 +13,7 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
+        "XLSX files" => "Xlsx-files.md"
     ],
 )
 

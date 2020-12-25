@@ -1,9 +1,14 @@
 module MTP
 
 import Base.@kwdef
-using Printf
+using Printf, XLSX
 
-export Mtp96, Mtp384, wellname
+export Mtp96, Mtp384, wellname, LETTERS
+
+include("xlsx.jl")
+
+const LETTERS = collect('A':'Z')
+
 
 abstract type Mtp end
 
