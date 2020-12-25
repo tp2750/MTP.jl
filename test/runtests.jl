@@ -14,4 +14,6 @@ end
     s1 = wb[1]
     m1 = MTP.sheet_as_matrix(s1)
     @test size(m1) == (25,13)
+    d1 = MTP.dump_workbook("plate_test_2.xlsx")
+    @test length(d1) == 1
 end
