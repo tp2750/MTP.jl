@@ -1,11 +1,12 @@
 module MTP
 
 import Base.@kwdef
-using Printf, XLSX
+using Printf, XLSX, DataFrames
 
-export Mtp96, Mtp384, wellname, LETTERS
+export Mtp96, Mtp384, wellname, LETTERS, wells
 
 include("xlsx.jl")
+include("setupfile.jl")
 
 const LETTERS = collect('A':'Z')
 
@@ -37,8 +38,20 @@ function Mtp384(name::String; barcode="")
     Mtp384(name, barcode, 384 , wells)
 end
 
+"""
+    wells(geometry)
+    wells(rows, cols)
 
+    Generate wells based on geometry or rows and colums (A01, A02, ....)
+"""
+wells(rows, cols) = vec(string.(repeat(LETTERS[1:rows],outer = cols),lpad.(repeat(1:cols, inner=rows),2,"0")))
 
+function wells(g)
+    rows = Int(sqrt(g/1.5))
+    cols = Int(1.5*rows)
+    wells(rows,cols)
+end
+       
 function wellname(w)
     pat = r"(\D)(\d+)"
     m = match(pat, w)
