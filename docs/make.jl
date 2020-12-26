@@ -13,8 +13,9 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
-        "XLSX files" => "Xlsx-files.md",
+        "Intro" => "intro.md", 
         "Setup files" => "setup.md",
+        "XLSX files" => "Xlsx-files.md",
     ],
 )
 
