@@ -1,8 +1,8 @@
-export sheet_as_matrix, name,dimension, filepath, DataFrame
+# export sheet_as_matrix, name,dimension, filepath, DataFrame
 
 function sheet_as_matrix(s::XLSX.Worksheet) 
     name = s.name
-    dims = s.dimension
+    dims = XLSX.get_dimension(s)
     file = s.package.filepath
     XLSX.readdata(file, "$(name)!$dims")
 end
@@ -18,7 +18,7 @@ function dump_workbook(file::String)
 end
 
 name(s::XLSX.Worksheet) = s.name
-dimension(s::XLSX.Worksheet) = s.dimension
+dimension(s::XLSX.Worksheet) = s.dimension ## This is get_dimension
 filepath(s::XLSX.Worksheet) = s.package.filepath
 
 Base.size(s::XLSX.Worksheet) = size(dimension(s)) ## Type pirate
