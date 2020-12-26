@@ -1,15 +1,6 @@
-using MTP, XLSX, DataFrames
+using MTP, XLSX, DataFrames, DataFramesMeta
 using Test
 
-@testset "MTP.jl" begin
-    p1 = Mtp96("Plate 1")
-    @test p1.name == "Plate 1"
-    @test p1.barcode == ""
-    @test p1.well == wellname.(p1.well)
-    @test wellname.(["A1", "A12"]) == ["A01", "A12"]    
-    p2 = Mtp384("Plate 2")
-    @test wells(96)[1:8] == ["A01", "B01", "C01", "D01", "E01", "F01", "G01", "H01"]
-end
 @testset "xlsx.jl" begin
     wb = XLSX.readxlsx("plate_test_2.xlsx")
     s1 = wb[1]
@@ -21,8 +12,20 @@ end
 @testset "setupfile.jl" begin
     wb = XLSX.readxlsx("plate_test.xlsx")
     sh1 = wb[1]
-    df1 = DataFrame(sh1)
+    df1 = MTP.DataFrame(sh1)
     se1 = MTP.setup(df1)
-    @test se1[3,2] == "C1"
+    @test se1[3,"well_content"] == "C1"
+    su2 = MTP.setupfile("plate_test_3.xlsx")
+    @test nrow(su2) == 96 + 384
+    @test su2.well == MTP.wellname.(su2.well_content)
+    su3 = MTP.merge_info(su2)
+    @test su3.well96 == MTP.well96.(su3.well, su3.geometry)
+    su4 = @where(su3, :platename .== "384");
+    su4p = MTP.printplate(su4, :Q);
+    @test su4p[6,6] == "Q4"
 end
-    
+@testset "plates" begin
+    p1 = MTP.plate(["P1", "P2"])
+    @test nrow(p1) == 2*96
+    @test MTP.Q.(["A01", "A02", "B01", "B02"]) == ["Q1", "Q2", "Q3", "Q4"]    
+end
