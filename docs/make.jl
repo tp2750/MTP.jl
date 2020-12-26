@@ -1,4 +1,4 @@
-using MTP, XLSX, DataFrames
+using MTP, XLSX, DataFrames, DataFramesMeta
 using Documenter
 
 makedocs(;
@@ -13,7 +13,8 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
-        "XLSX files" => "Xlsx-files.md"
+        "XLSX files" => "Xlsx-files.md",
+        "Setup files" => "setup.md",
     ],
 )
 
