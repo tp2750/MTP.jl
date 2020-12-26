@@ -25,29 +25,29 @@ wb_dump = MTP.dump_workbook("../../test/plate_test_2.xlsx")
 wb_dump[1]
 ```
 ```@example 1
-sheet_as_matrix(wbs1)
+MTP.sheet_as_matrix(wbs1)
 ```
 
 ### Accessor functions
 
 We also have some accessor functions:
 
-* `name(sheet)`: The name of the sheet.
-* `size(sheet)`: The size of the sheet (as matrix).
-* `dimension(sheet)`: The cell range of the sheet, eg "A1:M25".
-* `filepath(sheet)`: The file path used to read the workbook.
+* `MTP.name(sheet)`: The name of the sheet.
+* `MTP.size(sheet)`: The size of the sheet (as matrix).
+* `MTP.dimension(sheet)`: The cell range of the sheet, eg "A1:M25".
+* `MTP.filepath(sheet)`: The file path used to read the workbook.
 
 ```@example 1
-name(wbs1)
+MTP.name(wbs1)
 ```
 ```@example 1
-size(wbs1)
+MTP.size(wbs1)
 ```
 ```@example 1
-dimension(wbs1)
+MTP.dimension(wbs1)
 ```
 ```@example 1
-filepath(wbs1)
+MTP.filepath(wbs1)
 ```
 
 ## Easy DataFrames
@@ -58,6 +58,6 @@ You can quickly get a worksheet as a Dataframe using the overloaded `DataFrame` 
 using XLSX, MTP, DataFrames
 wb2 = XLSX.readxlsx("../../test/plate_test.xlsx")
 wb2s1 = wb2[1]
-DataFrame(wb2s1)
+MTP.DataFrame(wb2s1)
 ```
 
