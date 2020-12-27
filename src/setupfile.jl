@@ -1,35 +1,35 @@
 using XLSX, DataFrames, DataFramesMeta
 
 """
-    setupfile(file::String)
+    platesetupfile(file::String)
     Get a platesetup for an .xlsx file.
     Reads all sheets.
     Returns DataFrame of filename, sheetname, platename, geometry, well, well_content
     Platename is written in the topleft corner. well_content is in the wells.
     Only first plate definition on a sheet is read (for now)
 """
-function setupfile(file::String)
+function platesetupfile(file::String)
     wb = XLSX.readxlsx(file)
     sheetnames = XLSX.sheetnames(wb)
     setup = DataFrame[]
     ## Loop over sheets: read each setup
     for sheet in sheetnames
-        @info "setupfile processing sheet: '$sheet'"
+        @info "platesetupfile processing sheet: '$sheet'"
         sh = wb[sheet]
         try
             df = MTP.DataFrame(sh)
-            su1 = MTP.setup(df)
+            su1 = MTP.platesetup(df)
             typeof(su1) == Nothing && continue 
             su = @transform(su1, sheetname = sheet)
             push!(setup, su)
         catch e
-            @error "setupfile caught error:"
+            @error "platesetupfile caught error:"
             println(e)
             continue
         end
     end
     if length(setup) == 0
-        @error "setupfile found no valid plate setup sheets in $file"
+        @error "platesetupfile found no valid plate setup sheets in $file"
         return(nothing)
     end
     res = vcat(setup...)
@@ -37,10 +37,10 @@ function setupfile(file::String)
 end
 
 """
-    setup(df::DataFrame)
-    Get at setup from a DataFrame
+    platesetup(df::DataFrame)
+    Get at plate-setup from a DataFrame
 """
-function setup(df::DataFrame)
+function platesetup(df::DataFrame)
     content = vec(Matrix(df[:,Not(1)])) ## col-wise content
     geometry = length(content)
     if !(geometry ∈ [96, 384]) ## assert plate geometry

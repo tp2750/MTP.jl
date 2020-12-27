@@ -1,15 +1,15 @@
-# Setup files
+# Plate setup files
 
 Whn working with plates, we need to easily describe to content of the plates.
 This can often contain may parameters.
 
-Using the `setupfile` function, we can describe the setup in convenient plate-format.
+Using the `platesetupfile` function, we can describe the setup in convenient plate-format.
 There can be one such plate in each sheet in the workbook.
 In this way, we can describe many parameters in a single workbook.
 
 ## Example
 
-The notebook `plate_test_3.xlsx` contains 2 sheets: one with a 96-well base ssetup and one with a 384 well based setup.
+The notebook `plate_test_3.xlsx` contains 2 sheets: one with a 96-well based setup and one with a 384 well based setup.
 
 ![](../img/sheet1.png)
 ![](../img/sheet2.png)
@@ -17,7 +17,7 @@ The notebook `plate_test_3.xlsx` contains 2 sheets: one with a 96-well base sset
 We can read this in to a dataframe like this:
 
 ```{julia}
-julia> MTP.setupfile("plate_test_3.xlsx")
+julia> MTP.platesetupfile("plate_test_3.xlsx")
 480×6 DataFrame
  Row │ platename  geometry  well    well_content  sheetname  filename          
      │ String     Int64     String  Any           String     String            

@@ -104,7 +104,7 @@ The `MTP.merge_info` function adds quadarant information and other usefull infor
 * `row384` (Int): The row on the 384 well plate. Useful for sorting
 
 ```{julia}
-julia> su2 = MTP.setupfile("../../test/plate_test_3.xlsx");
+julia> su2 = MTP.platesetupfile("../../test/plate_test_3.xlsx");
 julia> s3 = @where(su2, :platename .== "384");
 julia> first(s3, 5)
 5×6 DataFrame
@@ -132,7 +132,7 @@ julia> first(s4, 5)
 # Back to plate format
 
 It is convenient to work with plate data in a "tall" DataFrame.
-We saw that it is convenient to enter data about plates in plate format and ingest it using `setupfile`.
+We saw that it is convenient to enter data about plates in plate format and ingest it using `platesetupfile`.
 Similarly, we need to display the content in plate format to easily overview it.
 
 

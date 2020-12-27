@@ -9,13 +9,13 @@ using Test
     d1 = MTP.dump_workbook("plate_test_2.xlsx")
     @test length(d1) == 1
 end
-@testset "setupfile.jl" begin
+@testset "platesetupfile.jl" begin
     wb = XLSX.readxlsx("plate_test.xlsx")
     sh1 = wb[1]
     df1 = MTP.DataFrame(sh1)
-    se1 = MTP.setup(df1)
+    se1 = MTP.platesetup(df1)
     @test se1[3,"well_content"] == "C1"
-    su2 = MTP.setupfile("plate_test_3.xlsx")
+    su2 = MTP.platesetupfile("plate_test_3.xlsx")
     @test nrow(su2) == 96 + 384
     @test su2.well == MTP.wellname.(su2.well_content)
     su3 = MTP.merge_info(su2)
@@ -23,7 +23,7 @@ end
     su4 = @where(su3, :platename .== "384");
     su4p = MTP.printplate(su4, :Q);
     @test su4p[6,6] == "Q4"
-    su_err = MTP.setupfile("plate_test_err.xlsx")
+    su_err = MTP.platesetupfile("plate_test_err.xlsx")
     @test typeof(su_err) == Nothing
 end
 @testset "plates" begin
