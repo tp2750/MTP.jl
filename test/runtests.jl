@@ -23,6 +23,8 @@ end
     su4 = @where(su3, :platename .== "384");
     su4p = MTP.printplate(su4, :Q);
     @test su4p[6,6] == "Q4"
+    su_err = MTP.setupfile("plate_test_err.xlsx")
+    @test typeof(su_err) == Nothing
 end
 @testset "plates" begin
     p1 = MTP.plate(["P1", "P2"])
