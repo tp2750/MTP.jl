@@ -86,7 +86,7 @@ Often samples start out in 96 well format, and are merged into 384 well format f
 To keep track of this, we use so called "quadrants" organized in a "Z":
 
 | Q1 | Q2 |
-| -- | -- |
+| --- | --- |
 | Q3 | Q4 |
 
 Below, we show which quadrant each well of a 384 plate belongs to:
