@@ -1,6 +1,6 @@
 # Plate setup files
 
-Whn working with plates, we need to easily describe to content of the plates.
+When working with plates, we need to easily describe to content of the plates.
 This can often contain may parameters.
 
 Using the `platesetupfile` function, we can describe the setup in convenient plate-format.
