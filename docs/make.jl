@@ -15,6 +15,7 @@ makedocs(;
         "Intro" => "index.md", 
         "Setup files" => "setup.md",
         "XLSX files" => "Xlsx-files.md",
+        "Content" => "content.md",
         "API" => "api.md",
     ],
 )
