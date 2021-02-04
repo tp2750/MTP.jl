@@ -7,3 +7,4 @@
 
 Working with SBS [microplates](https://en.wikipedia.org/wiki/Microplate) as [tidy](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf) [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 
+See the [documentation](https://tp2750.github.io/MTP.jl/dev) for how to use it.
