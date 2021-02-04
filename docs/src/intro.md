@@ -91,7 +91,7 @@ To keep track of this, we use so called "quadrants" organized in a "Z":
 
 Below, we show which quadrant each well of a 384 plate belongs to:
 
-![](../img/q384.png)
+![](img/q384.png)
 
 The `MTP.merge_info` function adds quadarant information and other usefull information to a plate DataFrame:
 

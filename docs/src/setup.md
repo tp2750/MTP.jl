@@ -11,8 +11,9 @@ In this way, we can describe many parameters in a single workbook.
 
 The notebook `plate_test_3.xlsx` contains 2 sheets: one with a 96-well based setup and one with a 384 well based setup.
 
-![](../img/sheet1.png)
-![](../img/sheet2.png)
+![96 well example](img/sheet1.png)
+
+![384 well example](img/sheet2.png)
 
 We can read this in to a dataframe like this:
 
