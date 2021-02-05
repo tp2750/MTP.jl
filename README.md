@@ -6,5 +6,6 @@
 [![Coverage](https://codecov.io/gh/tp2750/MTP.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/tp2750/MTP.jl)
 
 Working with SBS [microplates](https://en.wikipedia.org/wiki/Microplate) as [tidy](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf) [DataFrames](https://github.com/JuliaData/DataFrames.jl).
+This is inspired by the R package [plater](https://cran.r-project.org/web/packages/plater/index.html).
 
 See the [documentation](https://tp2750.github.io/MTP.jl/dev) for how to use it.
