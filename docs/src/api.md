@@ -1,10 +1,10 @@
 ```@meta
-CurrentModule = MTP
+CurrentModule = MicroPlates
 ```
 
-# MTP
+# MicroPlates
 
-The [MTP.jl](https://github.com/tp2750/MTP.jl) package is for working with SBS [microplates](https://en.wikipedia.org/wiki/Microplate) as [tidy](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf) [DataFrames](https://github.com/JuliaData/DataFrames.jl).
+The [MicroPlates.jl](https://github.com/tp2750/MicroPlates.jl) package is for working with SBS [microplates](https://en.wikipedia.org/wiki/Microplate) as [tidy](https://www.jstatsoft.org/index.php/jss/article/view/v059i10/v59i10.pdf) [DataFrames](https://github.com/JuliaData/DataFrames.jl).
 
 
 
@@ -12,5 +12,5 @@ The [MTP.jl](https://github.com/tp2750/MTP.jl) package is for working with SBS [
 ```
 
 ```@autodocs
-Modules = [MTP]
+Modules = [MicroPlates]
 ```

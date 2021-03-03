@@ -1,4 +1,4 @@
-module MTP
+module MicroPlates
 
 using Printf, XLSX, DataFrames, DataFramesMeta
 
@@ -8,15 +8,15 @@ include("setupfile.jl")
 export LETTERS, plate
 
 """
-    MTP.LETTERS is just the vector ["A", "B", ..., "Z"] as in R
+    MicroPlates.LETTERS is just the vector ["A", "B", ..., "Z"] as in R
 """
 const LETTERS = string.(collect('A':'Z'))
 
 
 
 """
-    MTP.plate(platename, geometry = 96)
-    MTP.plate([plate1, plate2], geometry = 96)
+    MicroPlates.plate(platename, geometry = 96)
+    MicroPlates.plate([plate1, plate2], geometry = 96)
     create one or more plates with the given names and geometry.
 """
 function plate(platename::String, geometry = 96)
@@ -33,7 +33,7 @@ end
 
     Generate wells based on geometry or rows and colums (A01, A02, ....)
 """
-wells(rows, cols) = vec(string.(repeat(MTP.LETTERS[1:rows],outer = cols),lpad.(repeat(1:cols, inner=rows),2,"0")))
+wells(rows, cols) = vec(string.(repeat(MicroPlates.LETTERS[1:rows],outer = cols),lpad.(repeat(1:cols, inner=rows),2,"0")))
 
 function wells(g)
     rows = Int(sqrt(g/1.5))
@@ -52,7 +52,7 @@ end
 function n_row(w)
     pat = r"(\D)(\d+)"
     m = match(pat, w)
-    findfirst(MTP.LETTERS .== m[1])
+    findfirst(MicroPlates.LETTERS .== m[1])
 end
 
 function n_col(w)
@@ -82,7 +82,7 @@ function well96(w::String, geometry=384)
     if geometry == 96
         return(w)
     end
-    (r,c) = MTP.n_rc(w)
+    (r,c) = MicroPlates.n_rc(w)
     r2 = floor(Int, (r-1)/2) +1 
     c2 = floor(Int, (c-1)/2) +1
     LETTERS[r2]*lpad(c2,2,"0")
@@ -101,14 +101,14 @@ end
     Add Q, well96, well384, row96, col96, row384, col384 to a plate DataFrame
 """
 function merge_info(df::DataFrame)
-    res = @transform(df, Q = MTP.Q.(:well, :geometry), well96 = MTP.well96.(:well, :geometry), well384 = MTP.well384.(:well, :geometry))
+    res = @transform(df, Q = MicroPlates.Q.(:well, :geometry), well96 = MicroPlates.well96.(:well, :geometry), well384 = MicroPlates.well384.(:well, :geometry))
     @transform(res, row96 = n_row.(:well96), col96 = n_col.(:well96), row384 = n_row.(:well384), col384 = n_col.(:well384))
 end
 
 """
     printplate(df::DataFrame, dispcol= :well)
     Show data in plate format. The dispcol selects the color to show in the wells.
-    Eg MTP.printplate(su3, :Q)
+    Eg MicroPlates.printplate(su3, :Q)
 """
 function printplate(df::DataFrame, dispcol= :well)
     df2 = @transform(df, row = LETTERS[n_row.(:well)], col = n_col.(:well))

@@ -1,14 +1,14 @@
-using MTP, XLSX, DataFrames, DataFramesMeta
+using MicroPlates, XLSX, DataFrames, DataFramesMeta
 using Documenter
 
 makedocs(;
-    modules=[MTP],
+    modules=[MicroPlates],
     authors="Thomas Poulsen",
-    repo="https://github.com/tp2750/MTP.jl/blob/{commit}{path}#L{line}",
-    sitename="MTP.jl",
+    repo="https://github.com/tp2750/MicroPlates.jl/blob/{commit}{path}#L{line}",
+    sitename="MicroPlates.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://tp2750.github.io/MTP.jl",
+        canonical="https://tp2750.github.io/MicroPlates.jl",
         assets=String[],
     ),
     pages=[
@@ -21,5 +21,5 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/tp2750/MTP.jl",
+    repo="github.com/tp2750/MicroPlates.jl",
 )
