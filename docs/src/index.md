@@ -1,10 +1,10 @@
-# Introduction to MTP
+# Introduction to DataPlates
 
 This package is for working with data on [micro plates](https://en.wikipedia.org/wiki/Microplate).
 
 ## Discovering functions
 
-No functions are exported, but just type `MTP.` and hit "Tab" to get a list of methods.
+No functions are exported, but just type `DataPlates.` and hit "Tab" to get a list of methods.
 
 ## Generating a plate
 
@@ -12,10 +12,10 @@ Plates are [DataFrames](https://dataframes.juliadata.org/stable/).
 Plates has a `geometry` which is the number of wells.
 Currently supported are 96 and 384 well plates.
 
-You create a plate by calling `MTP.plate("Platename")`:
+You create a plate by calling `DataPlates.plate("Platename")`:
 
 ```{julia}
-julia> MTP.plate("P1")
+julia> DataPlates.plate("P1")
 96×3 DataFrame
  Row │ platename  geometry  well
      │ String     Int64     String 
@@ -49,7 +49,7 @@ julia> MTP.plate("P1")
 You can make multiple plates by giving a vector of plate-names, and you can specify the geometry:
 
 ```{julia}
-julia> MTP.plate(["P1", "P2"], 384)
+julia> DataPlates.plate(["P1", "P2"], 384)
 768×3 DataFrame
  Row │ platename  geometry  well   
      │ String     Int64     String 
@@ -93,7 +93,7 @@ Below, we show which quadrant each well of a 384 plate belongs to:
 
 ![](img/q384.png)
 
-The `MTP.merge_info` function adds quadarant information and other usefull information to a plate DataFrame:
+The `DataPlates.merge_info` function adds quadarant information and other usefull information to a plate DataFrame:
 
 * `Q` (Q1, Q2, Q3, Q4): The quadrant of the well
 * `well96`: The well on the source 96 well plate
@@ -104,7 +104,7 @@ The `MTP.merge_info` function adds quadarant information and other usefull infor
 * `row384` (Int): The row on the 384 well plate. Useful for sorting
 
 ```{julia}
-julia> su2 = MTP.platesetupfile("../../test/plate_test_3.xlsx");
+julia> su2 = DataPlates.platesetupfile("../../test/plate_test_3.xlsx");
 julia> s3 = @where(su2, :platename .== "384");
 julia> first(s3, 5)
 5×6 DataFrame
@@ -116,7 +116,7 @@ julia> first(s3, 5)
    3 │ 384             384  C01     C1            Ark2       plate_test_3.xlsx
    4 │ 384             384  D01     D1            Ark2       plate_test_3.xlsx
    5 │ 384             384  E01     E1            Ark2       plate_test_3.xlsx
-julia> s4 = MTP.merge_info(s3);
+julia> s4 = DataPlates.merge_info(s3);
 julia> first(s4, 5)
 5×13 DataFrame
  Row │ platename  geometry  well    well_content  sheetname  filename           Q       well96  well384  row96  col96  row384  col384 
@@ -136,7 +136,7 @@ We saw that it is convenient to enter data about plates in plate format and inge
 Similarly, we need to display the content in plate format to easily overview it.
 
 
-For this we have the `MTP.printplate` function.
+For this we have the `DataPlates.printplate` function.
 It takes 2 arguments: a plate DataFrame and the column to display.
 The result is again a DataFrame, as`printplate` is just a thin wrapper around `unstack`.
 
@@ -144,7 +144,7 @@ Below we show how to get the Q information on the plate:
 
 
 ```{julia}
-julia> MTP.printplate(s4,:Q)
+julia> DataPlates.printplate(s4,:Q)
 16×26 DataFrame
  Row │ platename  row     1        2        3        4        5        6        7        8         ⋯
      │ String     String  String?  String?  String?  String?  String?  String?  String?  String?   ⋯

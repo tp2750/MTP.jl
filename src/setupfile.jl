@@ -17,8 +17,8 @@ function platesetupfile(file::String)
         @info "platesetupfile processing sheet: '$sheet'"
         sh = wb[sheet]
         try
-            df = MTP.DataFrame(sh)
-            su1 = MTP.platesetup(df)
+            df = DataPlates.DataFrame(sh)
+            su1 = DataPlates.platesetup(df)
             typeof(su1) == Nothing && continue 
             su = @transform(su1, sheetname = sheet)
             push!(setup, su)
@@ -58,7 +58,7 @@ function platesetup(df::DataFrame)
         println(df)
         return(nothing)
     end
-    MTP.DataFrame(platename = names(df)[1], geometry = geometry, well = wells(geometry), well_content = content)
+    DataPlates.DataFrame(platename = names(df)[1], geometry = geometry, well = wells(geometry), well_content = content)
 end
 
 

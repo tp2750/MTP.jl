@@ -18,7 +18,7 @@ The notebook `plate_test_3.xlsx` contains 2 sheets: one with a 96-well based set
 We can read this in to a dataframe like this:
 
 ```{julia}
-julia> MTP.platesetupfile("plate_test_3.xlsx")
+julia> DataPlates.platesetupfile("plate_test_3.xlsx")
 480×6 DataFrame
  Row │ platename  geometry  well    well_content  sheetname  filename          
      │ String     Int64     String  Any           String     String            

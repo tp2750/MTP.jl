@@ -18,36 +18,36 @@ For this we have the functions `dump_workbook` and `sheet_as_matrix`.
 These functions are different from `readtable`, as they include rows of all missing data.
 
 ```@example 1
-using XLSX, MTP
-wb_dump = MTP.dump_workbook("../../test/plate_test_2.xlsx")
+using XLSX, DataPlates
+wb_dump = DataPlates.dump_workbook("../../test/plate_test_2.xlsx")
 ```
 ```@example 1
 wb_dump[1]
 ```
 ```@example 1
-MTP.sheet_as_matrix(wbs1)
+DataPlates.sheet_as_matrix(wbs1)
 ```
 
 ### Accessor functions
 
 We also have some accessor functions:
 
-* `MTP.name(sheet)`: The name of the sheet.
-* `MTP.size(sheet)`: The size of the sheet (as matrix).
-* `MTP.dimension(sheet)`: The cell range of the sheet, eg "A1:M25".
-* `MTP.filepath(sheet)`: The file path used to read the workbook.
+* `DataPlates.name(sheet)`: The name of the sheet.
+* `DataPlates.size(sheet)`: The size of the sheet (as matrix).
+* `DataPlates.dimension(sheet)`: The cell range of the sheet, eg "A1:M25".
+* `DataPlates.filepath(sheet)`: The file path used to read the workbook.
 
 ```@example 1
-MTP.name(wbs1)
+DataPlates.name(wbs1)
 ```
 ```@example 1
-MTP.size(wbs1)
+DataPlates.size(wbs1)
 ```
 ```@example 1
-MTP.dimension(wbs1)
+DataPlates.dimension(wbs1)
 ```
 ```@example 1
-MTP.filepath(wbs1)
+DataPlates.filepath(wbs1)
 ```
 
 ## Easy DataFrames
@@ -55,9 +55,9 @@ MTP.filepath(wbs1)
 You can quickly get a worksheet as a Dataframe using the overloaded `DataFrame` function:
 
 ```@example 2
-using XLSX, MTP, DataFrames
+using XLSX, DataPlates, DataFrames
 wb2 = XLSX.readxlsx("../../test/plate_test.xlsx")
 wb2s1 = wb2[1]
-MTP.DataFrame(wb2s1)
+DataPlates.DataFrame(wb2s1)
 ```
 
